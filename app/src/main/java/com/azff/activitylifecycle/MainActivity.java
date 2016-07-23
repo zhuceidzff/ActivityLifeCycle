@@ -13,6 +13,7 @@ public class MainActivity extends AppCompatActivity {
     private final String TAG = "MainActivity";
     public static final String BOOKNAME_OF_CATEGORY_PHYSICAL = "bookName_of_category_physical";
     private Button mButton;
+    private Button mThirdButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +46,16 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        //查找mThirdButton
+        mThirdButton = (Button)findViewById(R.id.activity_main_third_button);
+        mThirdButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, ThirdActivity.class);
+                startActivityForResult(intent,1);
+            }
+        });
+
 
     }
     //
@@ -52,8 +63,17 @@ public class MainActivity extends AppCompatActivity {
     //将activityMsg活动页面中文本框的输入结果返回，并在本活动中提示
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        String name = data.getStringExtra("back");
+        String name = "";
+        //由requestCode决定返回的是哪一个活动页面的信息
+        switch (requestCode){
+            case 0:
+                name = data.getStringExtra("back");
+                break;
+            case 1:
+                name = data.getStringExtra("thirdBack");
+                break;
+        }
+
         Toast.makeText(this, name, Toast.LENGTH_LONG).show();
     }
 

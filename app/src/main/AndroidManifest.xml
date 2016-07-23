@@ -15,9 +15,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ActivityMsg"
+        <activity
+            android:name=".ActivityMsg"
             android:label="聊天界面"
-            android:parentActivityName=".ActivityMsg"/>
+            android:parentActivityName=".ActivityMsg" />
+        <activity
+            android:name=".ThirdActivity"
+            android:label="第三个页面">
+
+        </activity>
     </application>
 
 </manifest>

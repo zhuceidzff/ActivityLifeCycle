@@ -7,6 +7,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:orientation="vertical"
     tools:context="com.azff.activitylifecycle.MainActivity">
    //添加按钮
    <Button
@@ -17,7 +18,12 @@
    //添加文本框
    <EditText
        android:id="@+id/activity_main_edit_text"
-       android:layout_width="0dp"
+       android:layout_width="match_parent"
        android:layout_height="wrap_content"
-       android:layout_weight="1"/>
+       />
+   <Button
+       android:id="@+id/activity_main_third_button"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:text="Open the Third"/>
 </LinearLayout>
