@@ -12,6 +12,7 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
     private final String TAG = "MainActivity";
     public static final String BOOKNAME_OF_CATEGORY_PHYSICAL = "bookName_of_category_physical";
+    private Button mButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,10 +20,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Log.d(TAG,"onCreate方法被执行了。");
         //查找button
-        Button button = (Button) findViewById(R.id.avtivity_main_button);
+        mButton = (Button) findViewById(R.id.avtivity_main_button);
         //链接文本框
         final EditText editText = (EditText) findViewById(R.id.activity_main_edit_text);
-        button.setOnClickListener(new View.OnClickListener() {
+        mButton.setOnClickListener(new View.OnClickListener() {
             @Override
            /* public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this,ActivityMsg.class);
@@ -35,13 +36,25 @@ public class MainActivity extends AppCompatActivity {
                 //intent.putExtra("name","追加第二个活动页面的文字信息");
                 //将文本框中的内容通过单击按钮获取并在第二个活动页面的显示提示
                 intent.putExtra(BOOKNAME_OF_CATEGORY_PHYSICAL, editText.getText().toString());
-                startActivity(intent);
-
-
+                //直接跳转到下一个活动页面
+                // startActivity(intent);
+                //可以一次性完成这项任务，当程序执行到这段代码的时候，假若从T1Activity跳转到下一个Text2Activity，
+                // 而当这个Text2Activity调用了finish()方法以后，程序会自动跳转回T1Activity，
+                // 并调用前一个T1Activity中的onActivityResult( )方法。
+                startActivityForResult(intent,0);
             }
         });
 
 
+    }
+    //
+
+    //将activityMsg活动页面中文本框的输入结果返回，并在本活动中提示
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        String name = data.getStringExtra("back");
+        Toast.makeText(this, name, Toast.LENGTH_LONG).show();
     }
 
     @Override
